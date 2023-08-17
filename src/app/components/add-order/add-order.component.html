@@ -1,0 +1,33 @@
+<h1>Add order</h1>
+<br>
+<form [formGroup]="orderForm" (ngSubmit)="processForm()">
+    <div>
+        Name: 
+        <input type="text" formControlName="name"><br>
+        Email:
+        <input type="email" formControlName="email"><br>
+        Express:
+        <input type="checkbox" formControlName="express"><br>
+    </div>
+    <br>
+    <button (click)="addItemRow()">Add item</button>
+    <div formArrayName="itemArray">
+        <div *ngFor="let item of itemArray.controls, let i = index" [formGroupName]="i">
+            <br>
+            No. <span>{{i + 1 }}</span>
+            <br>
+            Item name:
+            <input type="text" formControlName="itemName"><br>
+            Quantity:
+            <input type="number" formControlName="quantity"><br>
+            Unit Price: 
+            <input type="number" formControlName="unitPrice"><br>
+            <button (click)="removeRow(i)">Remove</button>
+        </div>
+    </div>
+    <br><br><br>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+
+</form>
